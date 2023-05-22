@@ -6,6 +6,7 @@ class UserService {
     constructor(username, password) {
         this.username = username;
         this.password = password;
+
     }
     get username() {
         return this.username;
@@ -15,10 +16,10 @@ class UserService {
         return this.password;
     }
 
-    static authenticateUser(username, password) {
+    static authenticateUser(user) {
         let xhr = new XMLHttpRequest();
         xhr.open('GET', 'https://examples.com/api/user/authenticate?username=' +
-            username.username + '&password=' + password.password, true);
+            user.username + '&password=' + user.password, true);
         xhr.responseType = 'json';
         xhr.send();
 
@@ -39,8 +40,8 @@ $('#login').click(function () {
     let username = $('#username');
     let password = $('#password');
 
-    const resObj = new UserService(username, password)
-    UserService.authenticateUser(resObj);
+    const userObj = new UserService(username,password)
+    UserService.authenticateUser(userObj);
     if (UserService.error === null) {
         document.location.href = '/home';
     } else {
