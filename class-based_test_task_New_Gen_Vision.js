@@ -26,7 +26,7 @@ class UserService {
         xhr.onload = function () {
             if (xhr.status === 200) {
                 UserService.error = null
-                result = xhr.response;
+                result = JSON.parse(xhr.response);
                 return result
             } else {
                 return UserService.error = `Ошибка ${xhr.status}: ${xhr.statusText}`
